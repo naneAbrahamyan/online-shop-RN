@@ -3,6 +3,8 @@ import { View, StyleSheet, ImageBackground, Text, Image, TextInput, FlatList, To
 import Screen from '../components/Screen';
 import colors from '../configs/colors';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const filterData = [ 
     {
@@ -52,7 +54,7 @@ const products = [
     }
 ]
 
-const ShopScreen = () : ReactElement => {
+const ShopScreen = ({navigation}) : ReactElement => {
     const [search, setSearch] = useState("")
     const handleChange = (e: any) => {
         console.log(e)
@@ -93,7 +95,7 @@ const ShopScreen = () : ReactElement => {
                     data = {products}
                     keyExtractor = {(item) => item.id.toString()}
                     renderItem = {({item}) => (
-                        <TouchableOpacity onPress={() => console.log('pressed')}>
+                        <TouchableOpacity onPress={() => navigation.navigate('Items')}>
                             <View style={styles.productBox}>
                                 <Image source={item.uri} />
                                 <View>
