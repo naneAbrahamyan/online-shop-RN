@@ -6,31 +6,33 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Seperator from '../components/Seperator';
 
 
-const ItemScreen = () : ReactElement => { 
+const ItemScreen = ({ route }) : ReactElement => { 
+    const listing = route.params;
     return(
         <Screen>
             <View style = {styles.container}>
                 <View style={styles.imageCont}>
-                    <Image source={require("../assets/img3.png")} style ={styles.image}/>
+                    <Image source={listing.uri} style ={styles.image}/>
                 </View>
                 <View style = {styles.contentCont}>
-                    <Text style = {styles.headerText}>Title </Text>
+                    <Text style = {styles.headerText}> {listing.name} </Text>
                     <Seperator />
-                    <Text style = {styles.secondaryText}>price </Text>
+                    <Text style = {styles.secondaryText}> ${listing.price} /kg  </Text>
                     <Seperator />
-                    <Text style = {styles.greenText}>weight </Text>
+                    <Text style = {styles.greenText}>~ {listing.weight} gr/ piece </Text>
                     <Seperator />
-                    <Text style = {styles.h3}>Description </Text>
+                    <Text style = {styles.h3}> Description </Text>
                     <Seperator />
-                    <Text style = {styles.description}>Lorem IspumLorem IspumLorem IspumLorem IspumLorem IspumLorem IspumLorem IspumLorem IspumLorem IspumLorem IspumLorem IspumLorem IspumLorem IspumLorem IspumLorem IspumLorem Ispum </Text>
-                    <View style = {{flexDirection: 'row', alignSelf: "flex-end", marginTop: 150}}>
+                    <Text style = {styles.description}> {listing.description} </Text>
+                    <View style = {{ flexDirection: 'row', alignSelf: "flex-end", marginTop:70}}>
                     <TouchableOpacity style={styles.button} onPress = {() => console.log('clicked')}>
-                        <MaterialCommunityIcons name = "heart" color= "grey" size = {20}/>
+                        <MaterialCommunityIcons name = "heart" color= {listing.liked ? "green" : "grey"} size = {20}/>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.button1} onPress = {() => console.log('clicked')}>
                         <MaterialCommunityIcons name = "cart" color= "white" size = {20}/>
                         <Text style = {{color: 'white'}}> Add to Cart</Text>
                      </TouchableOpacity>
+
                     </View>
                 </View>
             </View>
@@ -90,7 +92,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingVertical: 12,
-        marginTop: 15,
+        // marginTop: 15,
         margin:3,
         paddingHorizontal: 32,
         borderRadius: 10,
@@ -103,7 +105,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingVertical: 12,
-        marginTop: 15,
+        // marginTop: 15,
         margin:3,
         paddingHorizontal: 32,
         borderRadius: 10,

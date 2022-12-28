@@ -9,7 +9,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 const filterData = [ 
     {
         id:1,
-        item: "Cabbage and Lettuce"
+        item: "Cabbage and Lettuce",
     },
     {
         id:2,
@@ -36,6 +36,8 @@ const products = [
         name: "Boston Lettuce",
         price: 1.5,
         liked: false,
+        weight: 150,
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a ",
         uri: require("../assets/Media.png")
     },
     {
@@ -43,6 +45,8 @@ const products = [
         name: "Boston Lettuce",
         price: 1.5,
         liked: false,
+        weight: 150,
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a ",
         uri: require("../assets/letucik.png")
     },
     {
@@ -50,15 +54,24 @@ const products = [
         name: "Boston Lettuce",
         price: 1.5,
         liked: false,
+        weight: 150,
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a ",
         uri: require("../assets/img3.png")
     }
 ]
 
 const ShopScreen = ({navigation}) : ReactElement => {
+    const [data, setData] = useState(products)
     const [search, setSearch] = useState("")
     const handleChange = (e: any) => {
         console.log(e)
         setSearch(e);
+    }
+
+    const handleLike = (item: number) =>{
+        const val = [...data];
+        val[item-1].liked = !data[item-1].liked;
+        setData(val)
     }
     return(
     <Screen>
@@ -92,18 +105,18 @@ const ShopScreen = ({navigation}) : ReactElement => {
 
             <View style = {styles.productsCont}>
                 <FlatList 
-                    data = {products}
+                    data = {data}
                     keyExtractor = {(item) => item.id.toString()}
                     renderItem = {({item}) => (
-                        <TouchableOpacity onPress={() => navigation.navigate('Items')}>
+                        <TouchableOpacity onPress={() => navigation.navigate('Items', item, handleLike)}>
                             <View style={styles.productBox}>
                                 <Image source={item.uri} />
                                 <View>
                                     <Text style = {styles.h1}> {item.name }</Text>
                                     <Text style = {styles.h6}> ${item.price } /kg</Text>
                                     <View style = {{flexDirection:"row", alignSelf: "flex-end"}}>
-                                    <TouchableOpacity style={styles.button} onPress = {() => console.log('clicked')}>
-                                    <MaterialCommunityIcons name = "heart" color= "black" size = {20}/>
+                                    <TouchableOpacity style={styles.button} onPress = {() => handleLike(item.id)}>
+                                    <MaterialCommunityIcons name = "heart" color= {item.liked ? "green" : "black"} size = {20}/>
                                     </TouchableOpacity>
                                     <TouchableOpacity style={styles.button1} onPress = {() => console.log('clicked')}>
                                     <MaterialCommunityIcons name = "cart" color= "white" size = {20}/>

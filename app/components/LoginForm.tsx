@@ -26,12 +26,13 @@ import {Formik} from 'formik';
     .required('Password is required')
     .label('Password'),
     });
-    
-const LoginForm = () => {
-    const initialValues: MyFormValues = { firstName: '' };
 
-    const handleSubmit = () => {
-    }
+
+interface Props{
+    handleLogin: () => void;
+  }
+const LoginForm = (handleLogin : Props) => {
+    const initialValues: MyFormValues = { firstName: '' };
 
     return (
         <View style = {styles.container}>
@@ -40,7 +41,7 @@ const LoginForm = () => {
           <Formik
             initialValues={{email: '', password: ''}}
             validationSchema = {validationSchema}
-            onSubmit={values => console.log(values)} >
+            onSubmit={() => handleLogin()} >
             {({
             handleChange,
             handleBlur,

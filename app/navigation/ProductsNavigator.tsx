@@ -7,8 +7,10 @@ import ItemScreen from '../screens/ItemScreen';
 
 const Stack = createNativeStackNavigator();
 const ProductsNavigator = () => (
-  <Stack.Navigator>
-    <Stack.Screen name="Account" component={ShopScreen} />
+  <Stack.Navigator >
+    <Stack.Screen name="Account" component={ShopScreen} options={{
+        headerShown: false, 
+      }}/>
     <Stack.Screen name="Items" component={ItemScreen} />
   </Stack.Navigator>
 );

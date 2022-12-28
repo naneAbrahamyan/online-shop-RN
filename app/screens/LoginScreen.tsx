@@ -5,7 +5,10 @@ import Screen from '../components/Screen';
 import RoundIcon from '../components/RoundIcon';
 import LoginForm from '../components/LoginForm';
 
-const LoginScreen = () : ReactElement => {
+interface Props{
+  handleLogin: Function;
+}
+const LoginScreen = (handleLogin: Props) : ReactElement => {
    return (
       <Screen>
          <View style={styles.container}>
@@ -14,7 +17,7 @@ const LoginScreen = () : ReactElement => {
             </View>
             <View style={styles.loginform}> 
                <Screen>
-                  <LoginForm />
+                  <LoginForm onPress = {handleLogin}/>
                </Screen>
             </View>
          </View>
