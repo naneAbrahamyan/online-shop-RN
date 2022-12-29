@@ -4,11 +4,12 @@ import colors from '../configs/colors';
 import Screen from '../components/Screen';
 import RoundIcon from '../components/RoundIcon';
 import LoginForm from '../components/LoginForm';
+import { Stringifiable } from 'query-string';
 
-interface Props{
-  handleLogin: Function;
+interface LoginScreenProps{
+  handleLogin: (email:string, password: string) => void;
 }
-const LoginScreen = (handleLogin: Props) : ReactElement => {
+const LoginScreen = ({handleLogin}: LoginScreenProps) => {
    return (
       <Screen>
          <View style={styles.container}>
@@ -17,7 +18,7 @@ const LoginScreen = (handleLogin: Props) : ReactElement => {
             </View>
             <View style={styles.loginform}> 
                <Screen>
-                  <LoginForm onPress = {handleLogin}/>
+                  <LoginForm handleLogin = {handleLogin}/>
                </Screen>
             </View>
          </View>

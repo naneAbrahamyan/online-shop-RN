@@ -28,10 +28,10 @@ import {Formik} from 'formik';
     });
 
 
-interface Props{
-    handleLogin: () => void;
+interface LoginFormProps{
+    handleLogin: (email: string, password: string) => void;
   }
-const LoginForm = (handleLogin : Props) => {
+const LoginForm = ({handleLogin} : LoginFormProps) => {
     const initialValues: MyFormValues = { firstName: '' };
 
     return (
@@ -39,9 +39,9 @@ const LoginForm = (handleLogin : Props) => {
             <Text style = {styles.headerText}> Local Garden </Text>
             <Text style = {styles.text}> Because you desere to eat fresh </Text>
           <Formik
-            initialValues={{email: '', password: ''}}
+            initialValues={{email: "", password: ''}}
             validationSchema = {validationSchema}
-            onSubmit={() => handleLogin()} >
+            onSubmit={({email, password})=> handleLogin(email, password) }>
             {({
             handleChange,
             handleBlur,

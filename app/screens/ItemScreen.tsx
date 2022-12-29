@@ -1,14 +1,21 @@
-import React, {ReactElement} from 'react';
+import React, {ReactElement, useContext} from 'react';
 import { View, StyleSheet, Image, Text, TouchableOpacity} from 'react-native';
 import colors from '../configs/colors';
 import Screen from '../components/Screen';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Seperator from '../components/Seperator';
+import { Context } from '../context/context';
 
 
 const ItemScreen = ({ route }) : ReactElement => { 
     const listing = route.params;
-    return(
+   const {likedArray, setLikedArray} =  useContext(Context);
+   const handleLike = () => {
+        const val = [...likedArray];
+        val[listing.id-1].liked = !likedArray[listing.id-1].liked;
+        setLikedArray(val)
+   }
+     return(
         <Screen>
             <View style = {styles.container}>
                 <View style={styles.imageCont}>
@@ -25,8 +32,8 @@ const ItemScreen = ({ route }) : ReactElement => {
                     <Seperator />
                     <Text style = {styles.description}> {listing.description} </Text>
                     <View style = {{ flexDirection: 'row', alignSelf: "flex-end", marginTop:70}}>
-                    <TouchableOpacity style={styles.button} onPress = {() => console.log('clicked')}>
-                        <MaterialCommunityIcons name = "heart" color= {listing.liked ? "green" : "grey"} size = {20}/>
+                    <TouchableOpacity style={styles.button} onPress = {() => handleLike()}>
+                        <MaterialCommunityIcons name = "heart" color= {likedArray[listing.id-1].liked ? "green" : "grey"} size = {20}/>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.button1} onPress = {() => console.log('clicked')}>
                         <MaterialCommunityIcons name = "cart" color= "white" size = {20}/>
