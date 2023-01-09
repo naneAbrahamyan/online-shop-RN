@@ -1,5 +1,5 @@
 import React, {ReactElement, useContext} from 'react';
-import { StyleSheet, Image,  View, FlatList, TouchableOpacity, Text, ImageSourcePropType } from "react-native";
+import { StyleSheet, Image,  View, FlatList, TouchableOpacity, Text } from "react-native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import colors from '../configs/colors';
 import { CartContext } from '../context/CartContext';
@@ -18,7 +18,7 @@ interface ProductsListProps{
   products: Products[],
   handleClick: (value: Products) => void,
 }
-const ProductsList = ( { products, handleClick} : ProductsListProps): ReactElement => {
+const ProductsList = ({ products, handleClick} : ProductsListProps): ReactElement => {
   const {likedArray, setLikedArray } = useContext(Context);
   const {cartItems, setCartItems} = useContext(CartContext);
 

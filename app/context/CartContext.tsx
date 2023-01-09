@@ -1,4 +1,4 @@
-import React, { createContext, PropsWithChildren, useState, FC } from "react";
+import React, { createContext, PropsWithChildren, useState } from "react";
 
 
 const cartProducts = [
@@ -31,7 +31,7 @@ export type CartContextType = {
   cartItems: Cart[];
   setCartItems: (liked : Cart[]) => void;
 };
-export const CartContext = React.createContext<CartContextType | null>(null);
+export const CartContext = createContext<CartContextType>({ cartItems: cartProducts, setCartItems: () => null});
 
 
 const CartContextProvider: React.FC<PropsWithChildren>  = ({ children }) => {

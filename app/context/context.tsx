@@ -1,4 +1,4 @@
-import React, { createContext, PropsWithChildren, useState, FC } from "react";
+import React, { createContext, PropsWithChildren, useState} from "react";
 
 
 const likedProducts = [
@@ -31,7 +31,7 @@ export type ContextType = {
   likedArray: ITodo[];
   setLikedArray: (liked : ITodo[]) => void;
 };
-export const Context = React.createContext<ContextType | null>(null);
+export const Context = createContext<ContextType>({likedArray: likedProducts, setLikedArray: () => null});
 
 
 const ContextProvider: React.FC<PropsWithChildren>  = ({ children }) => {
