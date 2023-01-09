@@ -5,16 +5,23 @@ import Screen from '../components/Screen';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Seperator from '../components/Seperator';
 import { Context } from '../context/context';
+import { CartContext } from '../context/CartContext';
 
 
 const ItemScreen = ({ route }) : ReactElement => { 
     const listing = route.params;
    const {likedArray, setLikedArray} =  useContext(Context);
+   const  { cartItems, setCartItems } = useContext(CartContext)
    const handleLike = () => {
         const val = [...likedArray];
         val[listing.id-1].liked = !likedArray[listing.id-1].liked;
         setLikedArray(val)
    }
+   const handleCartAddition = () => {
+    const val = [...cartItems];
+    val[listing.id-1].added = !cartItems[listing.id-1].added;
+    setCartItems(val)
+}
      return(
         <Screen>
             <View style = {styles.container}>
@@ -35,9 +42,9 @@ const ItemScreen = ({ route }) : ReactElement => {
                     <TouchableOpacity style={styles.button} onPress = {() => handleLike()}>
                         <MaterialCommunityIcons name = "heart" color= {likedArray[listing.id-1].liked ? "green" : "grey"} size = {20}/>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.button1} onPress = {() => console.log('clicked')}>
-                        <MaterialCommunityIcons name = "cart" color= "white" size = {20}/>
-                        <Text style = {{color: 'white'}}> Add to Cart</Text>
+                        <TouchableOpacity style={styles.button1} onPress = { () => handleCartAddition() }>
+                        <MaterialCommunityIcons name = "cart" color="white"  size = {20}/>
+                        <Text style = {{color: 'white'}}> {!cartItems[listing.id-1].added ? "Add to Cart" : "Item is in the Cart" }</Text>
                      </TouchableOpacity>
 
                     </View>

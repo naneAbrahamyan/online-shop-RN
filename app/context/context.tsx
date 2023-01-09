@@ -14,6 +14,14 @@ const likedProducts = [
         id:3,
         liked: false
     },
+    {
+      id:4,
+      liked: false
+    },
+    {
+      id:5,
+      liked: false
+    }
 ]
 export interface ITodo {
   id: number;

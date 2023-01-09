@@ -4,6 +4,9 @@ import Screen from '../components/Screen';
 import colors from '../configs/colors';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Context } from '../context/context';
+import { products } from '../utils/index';
+import { CartContext } from '../context/CartContext';
+import ProductsList from '../components/ProductsList';
 
 const filterData = [ 
     {
@@ -36,45 +39,45 @@ const filterData = [
 
 ]
 
-const products = [
-    {
-        id:1,
-        name: "Boston Lettuce",
-        price: 1.5,
-        liked: false,
-        weight: 150,
-        type: 5,
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a ",
-        uri: require("../assets/Media.png")
-    },
-    {
-        id:2,
-        name: "Boston Lettuce",
-        price: 1.5,
-        liked: false,
-        weight: 150,
-        type:1,
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a ",
-        uri: require("../assets/letucik.png")
-    },
-    {
-        id:3,
-        name: "Cabbage",
-        price: 1.5,
-        liked: false,
-        weight: 150,
-        type:1,
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a ",
-        uri: require("../assets/img3.png")
-    }
-]
+// const products = [
+//     {
+//         id:1,
+//         name: "Boston Lettuce",
+//         price: 1.5,
+//         liked: false,
+//         weight: 150,
+//         type: 5,
+//         description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a ",
+//         uri: require("../assets/Media.png")
+//     },
+//     {
+//         id:2,
+//         name: "Boston Lettuce",
+//         price: 1.5,
+//         liked: false,
+//         weight: 150,
+//         type:1,
+//         description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a ",
+//         uri: require("../assets/letucik.png")
+//     },
+//     {
+//         id:3,
+//         name: "Cabbage",
+//         price: 1.5,
+//         liked: false,
+//         weight: 150,
+//         type:1,
+//         description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a ",
+//         uri: require("../assets/img3.png")
+//     }
+// ]
 
 
 let prevFiltered = -1 ;
 
 const ShopScreen = ({ navigation }) : ReactElement => {
     const { likedArray, setLikedArray } = useContext(Context);
-    console.log(likedArray, 'liked')
+    const   {cartItems, setCartItems}  = useContext(CartContext)
     const [filteredData, setFilteredData] = useState(filterData);
     const [data, setData] = useState(products)
     const [search, setSearch] = useState("");
@@ -89,7 +92,6 @@ const ShopScreen = ({ navigation }) : ReactElement => {
         setSearch(e);
     }
     const handleFilterClick = (item: number) => {
-        console.log(prevFiltered)
         const val = [...filteredData]
        
         if(prevFiltered >= 0){
@@ -109,13 +111,6 @@ const ShopScreen = ({ navigation }) : ReactElement => {
             setData(filteredProducts)
         }
         setFilteredData(val);
-    }
-
-    const handleLike = (item: number) =>{
-        const val = [...likedArray];
-        val[item-1].liked = !likedArray[item-1].liked;
-        setLikedArray(val)
-        // setData(val)
     }
     return(
     <Screen>
@@ -148,29 +143,7 @@ const ShopScreen = ({ navigation }) : ReactElement => {
             </View>
 
             <View style = {styles.productsCont}>
-                <FlatList 
-                    data = {data}
-                    keyExtractor = {(item) => item.id.toString()}
-                    renderItem = {({item}) => (
-                        <TouchableOpacity onPress={() => navigation.navigate('Items', item)}>
-                            <View style={styles.productBox}>
-                                <Image source={item.uri} />
-                                <View>
-                                    <Text style = {styles.h1}> {item.name }</Text>
-                                    <Text style = {styles.h6}> ${item.price } /kg</Text>
-                                    <View style = {{flexDirection:"row", alignSelf: "flex-end"}}>
-                                    <TouchableOpacity style={styles.button} onPress = {() => handleLike(item.id)}>
-                                    <MaterialCommunityIcons name = "heart" color= {likedArray[item.id-1].liked ? "green" : "black"} size = {20}/>
-                                    </TouchableOpacity>
-                                    <TouchableOpacity style={styles.button1} onPress = {() => console.log('clicked')}>
-                                    <MaterialCommunityIcons name = "cart" color= "white" size = {20}/>
-                                    </TouchableOpacity>
-                                    </View>
-                                </View>
-                            </View> 
-                        </TouchableOpacity>
-                    )}
-                />
+                <ProductsList products = {data} handleClick = {(item) => navigation.navigate('Items', item)}/>
             </View>
         </View>
     </Screen>
@@ -223,9 +196,6 @@ const styles = StyleSheet.create({
     },
     filterList: {
         flexDirection: "column",
-        // flexWrap: "wrap"
-        // flexDirection: "row",
-        // flexWrap: "wrap"
     },
     listItem: {
         color: colors.secondary,
