@@ -1,4 +1,4 @@
-import React, {ReactElement, useState, useContext} from 'react';
+import React, {ReactElement, useState} from 'react';
 import { View, StyleSheet, Text, Image, TextInput, FlatList, TouchableOpacity} from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 

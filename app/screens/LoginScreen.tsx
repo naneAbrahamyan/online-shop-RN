@@ -1,10 +1,9 @@
-import React, {ReactElement} from 'react';
-import { View, StyleSheet, SafeAreaView} from 'react-native';
+import React from 'react';
+import { View, StyleSheet} from 'react-native';
 import colors from '../configs/colors';
 import Screen from '../components/Screen';
 import RoundIcon from '../components/RoundIcon';
 import LoginForm from '../components/LoginForm';
-import { Stringifiable } from 'query-string';
 
 interface LoginScreenProps{
   handleLogin: (email:string, password: string) => void;
