@@ -6,9 +6,14 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Seperator from '../components/Seperator';
 import { Context } from '../context/context';
 import { CartContext } from '../context/CartContext';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../navigation/ProductsNavigator';
 
 
-const ItemScreen = ({ route }) : ReactElement => { 
+type ItemScreenProps = NativeStackScreenProps<RootStackParamList, "Items">;
+
+
+const ItemScreen = ({ route }: ItemScreenProps) : ReactElement => { 
     const listing = route.params;
    const {likedArray, setLikedArray} =  useContext(Context);
    const  { cartItems, setCartItems } = useContext(CartContext)

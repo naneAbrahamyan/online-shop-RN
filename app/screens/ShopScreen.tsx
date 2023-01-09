@@ -1,12 +1,15 @@
 import React, {ReactElement, useState, useContext} from 'react';
-import { View, StyleSheet, ImageBackground, Text, Image, TextInput, FlatList, TouchableOpacity, Pressable} from 'react-native';
+import { View, StyleSheet, Text, Image, TextInput, FlatList, TouchableOpacity} from 'react-native';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+
 import Screen from '../components/Screen';
 import colors from '../configs/colors';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Context } from '../context/context';
 import { products } from '../utils/index';
 import { CartContext } from '../context/CartContext';
 import ProductsList from '../components/ProductsList';
+
+import { RootStackParamList } from '../navigation/ProductsNavigator';
 
 const filterData = [ 
     {
@@ -39,45 +42,13 @@ const filterData = [
 
 ]
 
-// const products = [
-//     {
-//         id:1,
-//         name: "Boston Lettuce",
-//         price: 1.5,
-//         liked: false,
-//         weight: 150,
-//         type: 5,
-//         description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a ",
-//         uri: require("../assets/Media.png")
-//     },
-//     {
-//         id:2,
-//         name: "Boston Lettuce",
-//         price: 1.5,
-//         liked: false,
-//         weight: 150,
-//         type:1,
-//         description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a ",
-//         uri: require("../assets/letucik.png")
-//     },
-//     {
-//         id:3,
-//         name: "Cabbage",
-//         price: 1.5,
-//         liked: false,
-//         weight: 150,
-//         type:1,
-//         description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a ",
-//         uri: require("../assets/img3.png")
-//     }
-// ]
 
+type ShopScreenProps = NativeStackScreenProps<RootStackParamList, "ShopScreen">;
 
 let prevFiltered = -1 ;
-
-const ShopScreen = ({ navigation }) : ReactElement => {
+const ShopScreen = ({ navigation }: ShopScreenProps) : ReactElement => {
     const { likedArray, setLikedArray } = useContext(Context);
-    const   {cartItems, setCartItems}  = useContext(CartContext)
+    const {cartItems, setCartItems}  = useContext(CartContext)
     const [filteredData, setFilteredData] = useState(filterData);
     const [data, setData] = useState(products)
     const [search, setSearch] = useState("");

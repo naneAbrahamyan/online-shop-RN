@@ -1,14 +1,23 @@
 import React from "react";
-import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import ShopScreen from '../screens/ShopScreen';
 import ItemScreen from '../screens/ItemScreen';
 
-
-const Stack = createNativeStackNavigator();
+export type RootStackParamList = {
+  ShopScreen: undefined;
+  Items: {
+    price:number,
+    weight: number,
+    name: string,
+    id: number,
+    uri: string,
+    description: string
+  };
+};
+const Stack = createNativeStackNavigator<RootStackParamList>();
 const ProductsNavigator = () => (
   <Stack.Navigator >
-    <Stack.Screen name="Account" component={ShopScreen} options={{
+    <Stack.Screen name="ShopScreen" component={ShopScreen} options={{
         headerShown: false, 
       }}/>
     <Stack.Screen name="Items" component={ItemScreen} />
