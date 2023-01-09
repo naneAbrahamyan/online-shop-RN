@@ -16,7 +16,7 @@ export interface Products {
 }
 interface ProductsListProps{
   products: Products[],
-  handleClick: (id: number) => void,
+  handleClick: (value: Products) => void,
 }
 const ProductsList = ( { products, handleClick} : ProductsListProps): ReactElement => {
   const {likedArray, setLikedArray } = useContext(Context);

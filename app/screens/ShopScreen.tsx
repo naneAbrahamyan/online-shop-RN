@@ -4,9 +4,7 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import Screen from '../components/Screen';
 import colors from '../configs/colors';
-import { Context } from '../context/context';
 import { products } from '../utils/index';
-import { CartContext } from '../context/CartContext';
 import ProductsList from '../components/ProductsList';
 
 import { RootStackParamList } from '../navigation/ProductsNavigator';
@@ -47,13 +45,11 @@ type ShopScreenProps = NativeStackScreenProps<RootStackParamList, "ShopScreen">;
 
 let prevFiltered = -1 ;
 const ShopScreen = ({ navigation }: ShopScreenProps) : ReactElement => {
-    const { likedArray, setLikedArray } = useContext(Context);
-    const {cartItems, setCartItems}  = useContext(CartContext)
     const [filteredData, setFilteredData] = useState(filterData);
     const [data, setData] = useState(products)
     const [search, setSearch] = useState("");
     const handleChange = (e: any) => {
-        const val = products.filter(i => { //
+        const val = products.filter(i => { 
            if(i.name.toLowerCase().includes(e.toLowerCase())){
             return i;
            }
@@ -114,13 +110,19 @@ const ShopScreen = ({ navigation }: ShopScreenProps) : ReactElement => {
             </View>
 
             <View style = {styles.productsCont}>
-                <ProductsList products = {data} handleClick = {(item) => navigation.navigate('Items', item)}/>
+                <ProductsList products = {data} handleClick = {(item) => {
+                    console.log(item, 'item')
+                    navigation.navigate('Items', item)}}/>
             </View>
         </View>
     </Screen>
     );
 
 }
+
+
+
+
 
 const styles = StyleSheet.create({
     container: {
