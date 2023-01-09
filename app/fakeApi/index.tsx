@@ -1,4 +1,3 @@
-import React, { useState, useCallback } from 'react';
 
 const filterData = [ 
     {
@@ -79,18 +78,3 @@ const likedProducts = [
     },
 ]
 
-// export const useHandleLike = (id: number) => {
-//     const [likedArray, setLikedArray] = useState(likedProducts);
-//     const update = useCallback()
-//     const val = [...likedArray];
-//     val[id-1].liked = !likedArray[id-1].liked
-//     setLikedArray(val);
-//     console.log(likedArray)
-//     return likedArray;
-// }
-
-// export const cart = () => {
-//     const [cartItems, setCartItems] = useState([]);
-
-//     return cartItems;
-// }

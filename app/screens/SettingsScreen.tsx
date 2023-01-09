@@ -2,8 +2,6 @@ import React, {ReactElement} from 'react';
 import { View, StyleSheet, Text} from 'react-native';
 import colors from '../configs/colors';
 import Screen from '../components/Screen';
-import RoundIcon from '../components/RoundIcon';
-import LoginForm from '../components/LoginForm';
 
 const SettingsScreen = () : ReactElement => {
    return (

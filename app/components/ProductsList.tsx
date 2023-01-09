@@ -41,7 +41,7 @@ const ProductsList = ({ products, handleClick} : ProductsListProps): ReactElemen
               renderItem = {({item}) => (
                 <TouchableOpacity onPress={() => handleClick(item)}>
                     <View style={styles.productBox}>
-                        <Image source= {item.uri} />
+                        <Image source= {item.uri} style = {{width: 170, height: 100}}/>
                         <View>
                             <Text style = {styles.h1}> {item.name }</Text>
                             <Text style = {styles.h6}> ${item.price } /kg</Text>

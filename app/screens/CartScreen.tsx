@@ -2,13 +2,16 @@ import React, {ReactElement, useContext} from 'react';
 import { View, StyleSheet, Text} from 'react-native';
 import colors from '../configs/colors';
 import Screen from '../components/Screen';
-import RoundIcon from '../components/RoundIcon';
-import LoginForm from '../components/LoginForm';
 import { CartContext } from '../context/CartContext';
-import ProductsList from '../components/ProductsList';
+import ProductsList, { Products } from '../components/ProductsList';
 import { products } from '../utils';
+import { RootBottomTabParamList } from '../../App';
+import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 
-const CartScreen = ( { navigation }) : ReactElement => {
+
+type CartScreenProps = BottomTabScreenProps<RootBottomTabParamList, "Cart">;
+
+const CartScreen = ( { navigation }: CartScreenProps) : ReactElement => {
    const { cartItems } = useContext(CartContext);
    
    const arr = [];
@@ -18,7 +21,7 @@ const CartScreen = ( { navigation }) : ReactElement => {
       }
    }
 
-   const handleClick = (item: Object ) => {
+   const handleClick = (item: Products ) => {
       navigation.navigate('Items', item)
    }
    return (

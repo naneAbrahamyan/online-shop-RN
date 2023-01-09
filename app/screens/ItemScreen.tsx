@@ -14,7 +14,7 @@ type ItemScreenProps = NativeStackScreenProps<RootStackParamList, "Items">;
 
 
 const ItemScreen = ({ route }: ItemScreenProps) : ReactElement => { 
-    const listing = route.params;
+   const listing = route.params;
    const {likedArray, setLikedArray} =  useContext(Context);
    const  { cartItems, setCartItems } = useContext(CartContext)
    const handleLike = () => {

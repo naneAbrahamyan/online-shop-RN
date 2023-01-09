@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, StyleSheet, Text, TextInput , Button, Pressable } from 'react-native';
+import { View, StyleSheet, Text, TextInput , Pressable } from 'react-native';
 import colors from '../configs/colors';
 import { Dimensions } from "react-native";
 import * as Yup from 'yup';
@@ -32,8 +32,6 @@ interface LoginFormProps{
     handleLogin: (email: string, password: string) => void;
   }
 const LoginForm = ({handleLogin} : LoginFormProps) => {
-    const initialValues: MyFormValues = { firstName: '' };
-
     return (
         <View style = {styles.container}>
             <Text style = {styles.headerText}> Local Garden </Text>
