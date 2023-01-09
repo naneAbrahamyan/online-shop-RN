@@ -48,7 +48,7 @@ const ShopScreen = ({ navigation }: ShopScreenProps) : ReactElement => {
     const [filteredData, setFilteredData] = useState(filterData);
     const [data, setData] = useState(products)
     const [search, setSearch] = useState("");
-    const handleChange = (e: any) => {
+    const handleChange = (e: string) => {
         const val = products.filter(i => { 
            if(i.name.toLowerCase().includes(e.toLowerCase())){
             return i;
