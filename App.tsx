@@ -20,7 +20,7 @@ import SettingsScreen from './app/screens/SettingsScreen';
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-  const [logged, setLogged ] = useState(true);
+  const [logged, setLogged ] = useState(false);
   const handleLogin = useCallback((email:string, password: string) => {
     setLogged( (logged) => !logged);
   }, [])
