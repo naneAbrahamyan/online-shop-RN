@@ -25,7 +25,7 @@ import {Formik} from 'formik';
 
 
 interface LoginFormProps{
-    handleLogin: (email: string, password: string) => void;
+    handleLogin: () => void;
   }
 const LoginForm = ({handleLogin} : LoginFormProps) => {
     return (
@@ -35,7 +35,7 @@ const LoginForm = ({handleLogin} : LoginFormProps) => {
           <Formik
             initialValues={{email: "", password: ''}}
             validationSchema = {validationSchema}
-            onSubmit={({email, password})=> handleLogin(email, password) }>
+            onSubmit={()=> handleLogin() }>
             {({
             handleChange,
             handleBlur,

@@ -4,11 +4,15 @@ import colors from '../configs/colors';
 import Screen from '../components/Screen';
 import RoundIcon from '../components/RoundIcon';
 import LoginForm from '../components/LoginForm';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootParamList } from '../navigation/RootNavigator';
 
-interface LoginScreenProps{
-  handleLogin: (email:string, password: string) => void;
-}
-const LoginScreen = ({handleLogin}: LoginScreenProps) => {
+// interface LoginScreenProps{
+//   handleLogin: (email:string, password: string) => void;
+// }
+type LoginScreenProps = NativeStackScreenProps<RootParamList, "Login">;
+
+const LoginScreen = ({ navigation }: LoginScreenProps) => {
    return (
       <Screen>
          <View style={styles.container}>
@@ -17,7 +21,7 @@ const LoginScreen = ({handleLogin}: LoginScreenProps) => {
             </View>
             <View style={styles.loginform}> 
                <Screen>
-                  <LoginForm handleLogin = {handleLogin}/>
+                  <LoginForm handleLogin = {() => navigation.navigate('Bottom')}/>
                </Screen>
             </View>
          </View>

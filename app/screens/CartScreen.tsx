@@ -5,11 +5,10 @@ import Screen from '../components/Screen';
 import { CartContext } from '../context/CartContext';
 import ProductsList, { Products } from '../components/ProductsList';
 import { products } from '../utils';
-import { RootBottomTabParamList } from '../../App';
 import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import {BottomTabParamList} from '../navigation/BottomNavigator'
 
-
-type CartScreenProps = BottomTabScreenProps<RootBottomTabParamList, "Cart">;
+type CartScreenProps = BottomTabScreenProps<BottomTabParamList, "Cart">;
 
 const CartScreen = ( { navigation }: CartScreenProps) : ReactElement => {
    const { cartItems } = useContext(CartContext);

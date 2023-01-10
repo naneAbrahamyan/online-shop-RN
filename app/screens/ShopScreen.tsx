@@ -4,7 +4,7 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import Screen from '../components/Screen';
 import colors from '../configs/colors';
-import { products } from '../utils/index';
+import { products } from '../utils';
 import ProductsList from '../components/ProductsList';
 
 import { RootStackParamList } from '../navigation/ProductsNavigator';
