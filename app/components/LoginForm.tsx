@@ -8,10 +8,6 @@ import * as Yup from 'yup';
 import {Formik} from 'formik';
 
   const width = Dimensions.get('window').width; 
-
-  interface MyFormValues {
-    firstName: string;
-  }
  
   const validationSchema = Yup.object().shape({
     email: Yup.string()

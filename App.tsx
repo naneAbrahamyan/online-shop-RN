@@ -1,7 +1,5 @@
 import * as React  from 'react';
 import { useState, useCallback } from 'react'
-import { StyleSheet } from 'react-native';
-import colors from './app/configs/colors';
 import LoginScreen from './app/screens/LoginScreen';
 import CartScreen from './app/screens/CartScreen';
 import ProductsNavigator from './app/navigation/ProductsNavigator';
