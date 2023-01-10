@@ -1,5 +1,5 @@
 import React, {ReactElement, useContext} from 'react';
-import { StyleSheet, Image,  View, FlatList, TouchableOpacity, Text } from "react-native";
+import { StyleSheet, Image,  View, FlatList, TouchableOpacity, Text, ImageSourcePropType } from "react-native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import colors from '../configs/colors';
 import { CartContext } from '../context/CartContext';
@@ -12,7 +12,7 @@ export interface Products {
   weight: number,
   type:number,
   description: string,
-  uri: string
+  uri: ImageSourcePropType
 }
 interface ProductsListProps{
   products: Products[],
