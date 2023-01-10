@@ -23,14 +23,20 @@ const ProductsList = ({ products, handleClick} : ProductsListProps): ReactElemen
   const {cartItems, setCartItems} = useContext(CartContext);
 
   const handleLike = (item: number) =>{
-    const val = [...likedArray];
-    val[item-1].liked = !likedArray[item-1].liked;
+    const val = likedArray.map( (value, index)=> {
+      if(index == item-1)
+          value.liked = !value.liked;
+      return value
+  });
     setLikedArray(val)
   }
 
   const handleCartClick = (item: number) => {
-    const val = [...cartItems];
-    val[item-1].added = !cartItems[item-1].added;
+     const val = cartItems.map( (value, index)=> {
+        if(index == item-1)
+            value.added = !value.added;
+        return value
+    });
     setCartItems(val)
   }  
     return (

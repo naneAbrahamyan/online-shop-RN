@@ -111,7 +111,6 @@ const ShopScreen = ({ navigation }: ShopScreenProps) : ReactElement => {
 
             <View style = {styles.productsCont}>
                 <ProductsList products = {data} handleClick = {(item) => {
-                    console.log(item, 'item')
                     navigation.navigate('Items', item)}}/>
             </View>
         </View>

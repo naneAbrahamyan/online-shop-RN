@@ -18,13 +18,19 @@ const ItemScreen = ({ route }: ItemScreenProps) : ReactElement => {
    const {likedArray, setLikedArray} =  useContext(Context);
    const  { cartItems, setCartItems } = useContext(CartContext)
    const handleLike = () => {
-        const val = [...likedArray];
-        val[listing.id-1].liked = !likedArray[listing.id-1].liked;
+    const val = likedArray.map( (value, index)=> {
+        if(index == listing.id-1)
+            value.liked = !value.liked;
+        return value
+    });
         setLikedArray(val)
    }
    const handleCartAddition = () => {
-    const val = [...cartItems];
-    val[listing.id-1].added = !cartItems[listing.id-1].added;
+    const val = cartItems.map( (value, index)=> {
+        if(index == listing.id-1)
+            value.added = !value.added;
+        return value
+    });
     setCartItems(val)
 }
      return(

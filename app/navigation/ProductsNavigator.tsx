@@ -1,7 +1,6 @@
 import React from "react";
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import ShopScreen from '../screens/ShopScreen';
-import ItemScreen from '../screens/ItemScreen';
+import { Items, ShopScreen } from "../screens/Screens";
 import { Products } from "../components/ProductsList";
 
 export type RootStackParamList = {
@@ -14,7 +13,7 @@ const ProductsNavigator = () => (
     <Stack.Screen name="ShopScreen" component={ShopScreen} options={{
         headerShown: false, 
       }}/>
-    <Stack.Screen name="Items" component={ItemScreen} />
+    <Stack.Screen name="Items" component={Items} />
   </Stack.Navigator>
 );
 
